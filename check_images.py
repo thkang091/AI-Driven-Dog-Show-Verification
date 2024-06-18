@@ -1,10 +1,5 @@
-# Imports python modules
 from time import time, sleep
-
-# Imports print functions that check the lab
 from print_functions_for_lab_checks import *
-
-# Imports functions created for this program
 from get_input_args import get_input_args
 from get_pet_labels import get_pet_labels
 from classify_images import classify_images
@@ -20,25 +15,24 @@ def main():
     check_command_line_arguments(in_arg)
 
     results = get_pet_labels(in_arg.dir)
-
     check_creating_pet_image_labels(results)
-
+    
+    print("Pet labels created.")
+    
     classify_images(in_arg.dir, results, in_arg.arch)
+    print("Images classified.")
 
-    check_classifying_images(results)    
-
+    check_classifying_images(results)
+    
     adjust_results4_isadog(results, in_arg.dogfile)
-
     check_classifying_labels_as_dogs(results)
 
     results_stats = calculates_results_stats(results)
-
     check_calculating_results(results, results_stats)
 
     print_results(results, results_stats, in_arg.arch, True, True)
     
     end_time = time()
-    
     tot_time = end_time - start_time
     print("\n** Total Elapsed Runtime:",
           str(int((tot_time/3600)))+":"+str(int((tot_time%3600)/60))+":"
